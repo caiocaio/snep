@@ -2,21 +2,20 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.createTable("queuestatus"),{
+    return queryInterface.createTable("events", {
       id: {
         type: Sequelize.INTEGER(11), 
-        allowNull: false, 
-        autoIncremente: true, 
+        autoIncrement: true, 
         primaryKey: true, 
       },
-    
+      type: Sequelize.STRING,
       content: Sequelize.JSON,
       createdAt: Sequelize.DATE, 
       updatedAt: Sequelize.DATE,
-    }
+    })
   },
 
   down: (queryInterface, Sequelize) => {
-    queryInterface.dropTable("queuestatus")
+    return queryInterface.dropTable('events', null, {});
   }
 };

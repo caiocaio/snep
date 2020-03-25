@@ -1,14 +1,16 @@
 const io = require('socket.io-client')
-let Event = require('database/models/Event')
+let Event = require('./database/models/Event')
 
-const socket = io.connect('http://192.168.1.180:5000', { reconnect: true })
+const socket = io.connect('http://187.72.164.25:5000', { reconnect: true })
 
 function saveNewEvent(eventType, data) {
     let newEvent = Event.build({
-        content: data
+        content: data,
+        type: eventType
     })
-    newEvent.type = eventType
-    newEvent.save()
+    console.log(newEvent.get({plain: true}));
+    delete newEvent.id;
+    newEvent.save();
 }
 
 socket.on('connect', function (data) {

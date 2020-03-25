@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize')
+const instance = require('../connection')
 
 class Event extends Sequelize.Model {
 }
@@ -6,16 +7,14 @@ class Event extends Sequelize.Model {
 Event.init({
   id: {
     type: Sequelize.INTEGER(11),
-    allowNull: false,
-    autoIncremente: true,
+    autoIncrement: true,
     primaryKey: true,
   },
   content: Sequelize.JSON,
-  createdAt: {type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.NOW},
-  updatedAt: {type: Sequelize.DATE},
-  type: {type: Sequelize.STRING},
+  type: Sequelize.STRING
 }, {
-  sequelize: Sequelize,
-  tableName: 'events' 
+  sequelize: instance,
+  tableName: 'events',
+  excludes: [] 
 });
 module.exports = Event
