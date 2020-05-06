@@ -1,7 +1,7 @@
 const io = require('socket.io-client')
 let Event = require('./database/models/Event')
 
-const socket = io.connect('http://187.72.164.25:5000', { reconnect: true })
+const socket = io.connect('*/ip do servidor/*', { reconnect: true })
 
 function saveNewEvent(eventType, data) {
     let newEvent = Event.build({
